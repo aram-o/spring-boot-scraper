@@ -32,8 +32,8 @@ class BatchServiceApplicationTests {
                 .build();
 
         webSpider.crawl(comnarconLinksSpiderLogic.getPersonLinkList().get(0));
-        System.err.println("imgUrl" + comnarconPersonSpiderLogic.getImgUrl());
-        System.err.println("title-" + comnarconPersonSpiderLogic.getTitle());
+        System.err.println("imgUrl" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getImgUrl());
+        System.err.println("title-" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getTitle());
     }
 
 }

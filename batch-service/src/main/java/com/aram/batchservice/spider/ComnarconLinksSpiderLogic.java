@@ -15,7 +15,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- *
+ * The spider logic to get all links.
  * @author aram
  */
 public class ComnarconLinksSpiderLogic implements SpiderLogic {
@@ -84,7 +84,7 @@ public class ComnarconLinksSpiderLogic implements SpiderLogic {
             return null;
         }
         
-        return new SpiderResult(url, null);
+        return new SpiderResult(url, UrlUtils.makeFullUrl(domain, url));
     }
     
     private Elements addPersonLinks(String html) {

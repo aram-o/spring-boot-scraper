@@ -1,5 +1,6 @@
 package com.aram.batchservice.spider;
 
+import com.aram.batchservice.dto.ComnarconPersonDTO;
 import com.aram.web.spider.logic.SpiderLogic;
 import com.aram.web.spider.utils.UrlUtils;
 import com.aram.web.spider.webclient.WebClient;
@@ -12,25 +13,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- *
+ * The spider logic to parse person data.
  * @author aram
  */
 public class ComnarconPersonSpiderLogic implements SpiderLogic {
     
-    private String title;
-    private String articleContent;
-    private String imgUrl;
-    
-    public String getTitle() {
-        return this.title;
-    }
+    private ComnarconPersonDTO comnarconPersonDTO;
 
-    public String getArticleContent() {
-        return this.articleContent;
-    }
-
-    public String getImgUrl() {
-        return this.imgUrl;
+    public ComnarconPersonDTO getComnarconPersonDTO() {
+        return comnarconPersonDTO;
     }
     
     @Override
@@ -66,19 +57,21 @@ public class ComnarconPersonSpiderLogic implements SpiderLogic {
             return null;
         }
         
-        this.articleContent = articleText.html();
+        this.comnarconPersonDTO = new ComnarconPersonDTO();
+        
+        this.comnarconPersonDTO.setArticleContent(articleText.html());
         
         Elements imgs = articleText.select("img");
         if( imgs != null && !imgs.isEmpty() ) {
             Element img = imgs.get(1);
             String domain = UrlUtils.getDomainNameNoException(url);
-            this.imgUrl = UrlUtils.makeFullUrl(domain, img.attr("src"));
+            this.comnarconPersonDTO.setImgUrl(UrlUtils.makeFullUrl(domain, img.attr("src")));
 
             if( img.parent() != null
                 && img.parent().previousElementSibling() != null 
                 && img.parent().previousElementSibling().childNodeSize() > 0 
             ) {
-                this.title = img.parent().previousElementSibling().child(0).ownText();
+                this.comnarconPersonDTO.setTitle(img.parent().previousElementSibling().child(0).ownText());
             }
             
         }
