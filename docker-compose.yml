@@ -1,18 +1,23 @@
 version: '3.5'
 services:
+    setupmongo:
+        image: setupmongo
+        build: ./setupmongo
+        depends_on:      
+            - mongonode
+        networks:
+          - appnetwork
     mongonode:
+        hostname: mongonode
         image: mongo:latest
-        container_name: "mongonode"
-        environment:
-          - MONGO_DATA_DIR=/opt/mongonode/data:/data/db
-          - MONGO_LOG_DIR=/opt/mongonode/data:/dev/null
-          - MONGODB_USER="user" 
-          - MONGODB_PASS="pass"
+        container_name: mongonode
         volumes:
-          - ./data/db:/data/db
+            - /opt/mongonode/data:/data/db
+            - /opt/mongonode/logs:/data/logs
         ports:
             - 27017:27017
-        command: mongod --bind_ip_all
+        command: [ "/usr/bin/mongod", "--bind_ip_all" ]
+        restart: always
         networks:
             - appnetwork
     batch-service:
@@ -24,7 +29,7 @@ services:
         networks:
             - appnetwork
         depends_on:      
-            - mongonode
+            - setupmongo
 networks:
     appnetwork:
         driver: bridge   
