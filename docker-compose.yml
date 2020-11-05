@@ -1,0 +1,32 @@
+version: '3.5'
+services:
+    mongonode:
+        image: mongo:latest
+        container_name: "mongonode"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+          - MONGODB_USER="user" 
+          - MONGODB_PASS="pass"
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles --logpath=/dev/null # --quiet
+        networks:
+            - appnetwork
+    batch-service:
+        image: batch-service
+        env_file: .env
+        build: ./batch-service
+        ports:
+            - '8080:8080'
+        networks:
+            - appnetwork
+        depends_on:      
+            - mongonode
+networks:
+    appnetwork:
+        driver: bridge   
+        ipam:
+            driver: default

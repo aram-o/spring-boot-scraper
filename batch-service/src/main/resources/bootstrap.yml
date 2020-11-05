@@ -1,0 +1,9 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: batch-service
+    data:
+        mongodb:           
+            uri: mongodb://${MONGO_USERNAME:user}:${MONGO_PASSWORD:pass}@mongonode:27017/batchDB
+            #?ssl=false&connectTimeoutMS=300&minPoolSize=0&maxPoolSize=100&maxIdleTimeMS=900000&readPreference=primaryPreferred&authSource=admin

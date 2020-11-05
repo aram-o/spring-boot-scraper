@@ -5,9 +5,7 @@ import com.aram.batchservice.spider.ComnarconPersonSpiderLogic;
 import com.aram.web.spider.WebSpiderImpl;
 import com.aram.web.spider.webclient.HtmlUnitWebClient;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 class BatchServiceApplicationTests {
 
     @Test
