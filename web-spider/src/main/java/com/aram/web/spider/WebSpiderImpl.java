@@ -4,12 +4,14 @@ import com.aram.web.spider.logic.SpiderLogic;
 import com.aram.web.spider.webclient.WebClient;
 
 /**
- *
+ * The web spider to build all logic needed for crawling.
  * @author aram
  */
 public class WebSpiderImpl implements WebSpider {
     
+//    The spider logic to be used.
     private final SpiderLogic spiderLogic;
+//    The web client to be used.
     private final WebClient webClient;
 
     private WebSpiderImpl(SpiderLogic spiderLogic, WebClient webClient) {

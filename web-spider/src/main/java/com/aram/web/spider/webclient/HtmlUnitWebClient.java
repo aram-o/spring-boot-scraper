@@ -19,6 +19,11 @@ import java.util.logging.Logger;
  */
 public class HtmlUnitWebClient implements WebClient {
 
+    /**
+     * Returns the html for particular url.
+     * @param url
+     * @return
+     */
     @Override
     public String getHtml(String url) {
         String html = "";
