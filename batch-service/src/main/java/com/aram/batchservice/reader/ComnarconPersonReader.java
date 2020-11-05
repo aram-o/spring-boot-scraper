@@ -12,12 +12,14 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
+import org.springframework.stereotype.Component;
 
 /**
  * The custom item reader to read person data.
  * @author aram
  */
 @Slf4j
+@Component
 public class ComnarconPersonReader implements ItemReader<ComnarconPersonDTO> {
 
 	private List<String> linkList = new ArrayList<>();

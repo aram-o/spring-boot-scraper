@@ -6,12 +6,14 @@ import com.aram.batchservice.model.ComnarconPerson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * The item processor to map ComnarconPersonDTO to ComnarconPerson instance. 
  * @author aram
  */
 @Slf4j
+@Component
 public class ComnarconPersonItemProcessor implements ItemProcessor<ComnarconPersonDTO, ComnarconPerson> {
     
     @Autowired

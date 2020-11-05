@@ -51,11 +51,11 @@ public class HtmlUnitWebClient implements WebClient {
 
         final com.gargoylesoftware.htmlunit.WebClient webClient = new com.gargoylesoftware.htmlunit.WebClient(getBrowserVersion());
 
-//        webClient.setJavaScriptErrorListener(null);
-//        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
-//        webClient.setJavaScriptTimeout(500);
-//        webClient.waitForBackgroundJavaScript(490);
-        webClient.setRefreshHandler(new WaitingRefreshHandler(100));
+        webClient.setJavaScriptErrorListener(null);
+        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+        webClient.setJavaScriptTimeout(500);
+        webClient.waitForBackgroundJavaScript(490);
+        webClient.setRefreshHandler(new WaitingRefreshHandler(300));
         WebClientOptions options = webClient.getOptions();
 
         options.setRedirectEnabled(true);

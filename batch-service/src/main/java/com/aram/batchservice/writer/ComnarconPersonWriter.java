@@ -6,12 +6,14 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * The custom item writer to save person instance.
  * @author aram
  */
 @Slf4j
+@Component
 public class ComnarconPersonWriter implements ItemWriter<ComnarconPerson> {
 
     @Autowired

@@ -23,17 +23,17 @@ class BatchServiceApplicationTests {
 
         System.err.println("ComnarconLinksSpiderLogic links size " + comnarconLinksSpiderLogic.getPersonLinkList().size());
 
-        ComnarconPersonSpiderLogic comnarconPersonSpiderLogic = new ComnarconPersonSpiderLogic();
-
-        webSpider = WebSpiderImpl
-                .builder()
-                .setSpiderLogic(comnarconPersonSpiderLogic)
-                .setWebClient(new HtmlUnitWebClient())
-                .build();
-
-        webSpider.crawl(comnarconLinksSpiderLogic.getPersonLinkList().get(0));
-        System.err.println("imgUrl" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getImgUrl());
-        System.err.println("title-" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getTitle());
+//        ComnarconPersonSpiderLogic comnarconPersonSpiderLogic = new ComnarconPersonSpiderLogic();
+//
+//        webSpider = WebSpiderImpl
+//                .builder()
+//                .setSpiderLogic(comnarconPersonSpiderLogic)
+//                .setWebClient(new HtmlUnitWebClient())
+//                .build();
+//
+//        webSpider.crawl(comnarconLinksSpiderLogic.getPersonLinkList().get(0));
+//        System.err.println("imgUrl" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getImgUrl());
+//        System.err.println("title-" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getTitle());
     }
 
 }

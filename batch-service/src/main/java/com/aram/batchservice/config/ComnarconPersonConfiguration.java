@@ -13,7 +13,6 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +30,16 @@ public class ComnarconPersonConfiguration {
     
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
-
+    
+    @Autowired
+    private ComnarconPersonReader comnarconPersonReader;
+    
+    @Autowired
+    private ComnarconPersonItemProcessor comnarconPersonItemProcessor;
+    
+    @Autowired
+    private ComnarconPersonWriter comnarconPersonWriter;
+    
     @Bean
     public Job processJob() throws Exception {
             return jobBuilderFactory.get("processJob")
@@ -43,9 +51,9 @@ public class ComnarconPersonConfiguration {
     public Step step1() throws Exception {
         
         return this.stepBuilderFactory.get("step1").<ComnarconPersonDTO, ComnarconPerson>chunk(5)
-            .reader(new ComnarconPersonReader())
-            .processor(new ComnarconPersonItemProcessor())
-            .writer(new ComnarconPersonWriter())
+            .reader(this.comnarconPersonReader)
+            .processor(this.comnarconPersonItemProcessor)
+            .writer(this.comnarconPersonWriter)
             .build();
     }
     

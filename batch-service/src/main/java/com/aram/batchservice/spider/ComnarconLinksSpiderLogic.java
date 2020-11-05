@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,6 +19,7 @@ import org.jsoup.select.Elements;
  * The spider logic to get all links.
  * @author aram
  */
+@Slf4j
 public class ComnarconLinksSpiderLogic implements SpiderLogic {
     
     private final List<String> personLinkList = new ArrayList<>();
@@ -62,7 +64,7 @@ public class ComnarconLinksSpiderLogic implements SpiderLogic {
         
         this.addPersonLinks(html);
         
-        Element link = doc.selectFirst("div.pagination>li>a.active[href]");
+        Element link = doc.selectFirst("div.pagination>li>a.active");
 //            Do not continue if the link is null or next sibling is absent.
         if( link == null
             || link.parent() == null 
@@ -84,7 +86,7 @@ public class ComnarconLinksSpiderLogic implements SpiderLogic {
             return null;
         }
         
-        return new SpiderResult(url, UrlUtils.makeFullUrl(domain, url));
+        return new SpiderResult(url, UrlUtils.makeFullUrl(domain, nextLink));
     }
     
     private Elements addPersonLinks(String html) {
