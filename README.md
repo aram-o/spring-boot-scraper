@@ -2,9 +2,7 @@
 
 This is the demo apllication which uses spring-batch and scrapes web page.
 
-To run:
-1. pull application.
-2. docker-compose up --build
+To run simply call docker-compose up --build
 
 It expose two endpoints.
 1. One to list all persons.
