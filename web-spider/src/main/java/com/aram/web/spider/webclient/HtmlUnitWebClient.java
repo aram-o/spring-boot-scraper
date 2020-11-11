@@ -60,7 +60,7 @@ public class HtmlUnitWebClient implements WebClient {
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());
         webClient.setJavaScriptTimeout(500);
         webClient.waitForBackgroundJavaScript(490);
-        webClient.setRefreshHandler(new WaitingRefreshHandler(300));
+        webClient.setRefreshHandler(new WaitingRefreshHandler());
         WebClientOptions options = webClient.getOptions();
 
         options.setRedirectEnabled(true);

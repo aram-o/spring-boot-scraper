@@ -22,27 +22,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class ComnarconPersonReader implements ItemReader<ComnarconPersonDTO> {
 
-	private List<String> linkList = new ArrayList<>();
+    private List<String> linkList = new ArrayList<>();
 
-	private int count = 0;
+    private int count = 0;
 
     /**
      * Get all links from http://comnarcon.com/?id=26 to read person data.
      * @throws Exception
      */
     public ComnarconPersonReader() throws Exception {
-            ComnarconLinksSpiderLogic comnarconLinksSpiderLogic = new ComnarconLinksSpiderLogic();
+        ComnarconLinksSpiderLogic comnarconLinksSpiderLogic = new ComnarconLinksSpiderLogic();
 
-            WebSpiderImpl webSpider = WebSpiderImpl
-                    .builder()
-                    .setSpiderLogic(comnarconLinksSpiderLogic)
-                    .setWebClient(new HtmlUnitWebClient())
-                    .build();
+        WebSpiderImpl webSpider = WebSpiderImpl
+                .builder()
+                .setSpiderLogic(comnarconLinksSpiderLogic)
+                .setWebClient(new HtmlUnitWebClient())
+                .build();
 
-            webSpider.crawl("http://comnarcon.com/?id=26");
-            
-            this.linkList = comnarconLinksSpiderLogic.getPersonLinkList();
-        }
+        webSpider.crawl("http://comnarcon.com/?id=26");
+
+        this.linkList = comnarconLinksSpiderLogic.getPersonLinks();
+    }
         
     /**
      * Read data for each person and return the DTO instance.
@@ -53,24 +53,24 @@ public class ComnarconPersonReader implements ItemReader<ComnarconPersonDTO> {
      * @throws NonTransientResourceException
      */
     @Override
-	public ComnarconPersonDTO read() throws Exception, UnexpectedInputException,
-			ParseException, NonTransientResourceException {
-            
-            ComnarconPersonSpiderLogic comnarconPersonSpiderLogic = new ComnarconPersonSpiderLogic();
+    public ComnarconPersonDTO read() throws Exception, UnexpectedInputException,
+                    ParseException, NonTransientResourceException {
 
-            WebSpiderImpl webSpider = WebSpiderImpl
-                    .builder()
-                    .setSpiderLogic(comnarconPersonSpiderLogic)
-                    .setWebClient(new HtmlUnitWebClient())
-                    .build();
+        ComnarconPersonSpiderLogic comnarconPersonSpiderLogic = new ComnarconPersonSpiderLogic();
 
-            if (count < linkList.size()) {
-                webSpider.crawl(linkList.get(count++));
-                return comnarconPersonSpiderLogic.getComnarconPersonDTO();
-            } else {
-                    count = 0;
-            }
-            return null;
-	}
+        WebSpiderImpl webSpider = WebSpiderImpl
+                .builder()
+                .setSpiderLogic(comnarconPersonSpiderLogic)
+                .setWebClient(new HtmlUnitWebClient())
+                .build();
+
+        if (count < linkList.size()) {
+            webSpider.crawl(linkList.get(count++));
+            return comnarconPersonSpiderLogic.getComnarconPersonDTO();
+        } else {
+                count = 0;
+        }
+        return null;
+    }
     
 }

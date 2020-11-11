@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author aram
  */
-public interface ComnarconPersonService {
+public interface PersonService {
     
     List<ComnarconPerson> getAllPersons();
     

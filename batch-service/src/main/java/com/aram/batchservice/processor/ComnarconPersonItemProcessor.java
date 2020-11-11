@@ -1,7 +1,7 @@
 package com.aram.batchservice.processor;
 
 import com.aram.batchservice.dto.ComnarconPersonDTO;
-import com.aram.batchservice.mapper.ComnarconPersonMapper;
+import com.aram.batchservice.mapper.PersonMapper;
 import com.aram.batchservice.model.ComnarconPerson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class ComnarconPersonItemProcessor implements ItemProcessor<ComnarconPersonDTO, ComnarconPerson> {
     
     @Autowired
-    private ComnarconPersonMapper comnarconPersonMapper;
+    private PersonMapper comnarconPersonMapper;
     
     @Override
     public ComnarconPerson process(ComnarconPersonDTO item) throws Exception {

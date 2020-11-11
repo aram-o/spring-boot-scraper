@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
  * @author aram
  */
 @Component
-public class ComnarconPersonMapper {
+public class PersonMapper {
     
     private final DozerBeanMapper mapper;
     
-    public ComnarconPersonMapper() {
+    public PersonMapper() {
         List<String> mappingFiles = new ArrayList();
         mappingFiles.add("dozerJdk8Converters.xml");
 
@@ -30,7 +30,7 @@ public class ComnarconPersonMapper {
      * @param comnarconPerson
      * @return
      */
-    public ComnarconPersonSummaryDTO toComnarconPersonSummaryDTO(ComnarconPerson comnarconPerson) {
+    public ComnarconPersonSummaryDTO toSummary(ComnarconPerson comnarconPerson) {
         ComnarconPersonSummaryDTO dto = this.mapper.map(comnarconPerson, ComnarconPersonSummaryDTO.class);
         return dto;
     }

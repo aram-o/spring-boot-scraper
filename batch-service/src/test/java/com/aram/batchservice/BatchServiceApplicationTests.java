@@ -21,7 +21,7 @@ class BatchServiceApplicationTests {
 
         webSpider.crawl("http://comnarcon.com/?id=26");
 
-        System.err.println("ComnarconLinksSpiderLogic links size " + comnarconLinksSpiderLogic.getPersonLinkList().size());
+        System.err.println("ComnarconLinksSpiderLogic links size " + comnarconLinksSpiderLogic.getPersonLinks().size());
 
 //        ComnarconPersonSpiderLogic comnarconPersonSpiderLogic = new ComnarconPersonSpiderLogic();
 //
@@ -31,7 +31,7 @@ class BatchServiceApplicationTests {
 //                .setWebClient(new HtmlUnitWebClient())
 //                .build();
 //
-//        webSpider.crawl(comnarconLinksSpiderLogic.getPersonLinkList().get(0));
+//        webSpider.crawl(comnarconLinksSpiderLogic.getPersonLinks().get(0));
 //        System.err.println("imgUrl" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getImgUrl());
 //        System.err.println("title-" + comnarconPersonSpiderLogic.getComnarconPersonDTO().getTitle());
     }

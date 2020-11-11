@@ -18,12 +18,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * The batch configuration class.
+ * The batch configuration 
+ * 
  * @author aram
  */
 @Configuration
 @EnableBatchProcessing
-public class ComnarconPersonConfiguration {
+public class BatchProcessingConfiguration {
     
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -41,10 +42,13 @@ public class ComnarconPersonConfiguration {
     private ComnarconPersonWriter comnarconPersonWriter;
     
     @Bean
-    public Job processJob() throws Exception {
-            return jobBuilderFactory.get("processJob")
-                .incrementer(new RunIdIncrementer()).listener(listener())
-                .flow(step1()).end().build();
+    public Job processingJob() throws Exception {
+        return this.jobBuilderFactory.get("processingJob")
+            .incrementer(new RunIdIncrementer())
+            .listener(this.listener())
+            .flow(this.step1())
+            .end()
+            .build();
     }
 
     @Bean

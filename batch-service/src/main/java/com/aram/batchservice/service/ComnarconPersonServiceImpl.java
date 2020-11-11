@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author aram
  */
 @Service
-public class ComnarconPersonServiceImpl implements ComnarconPersonService {
+public class ComnarconPersonServiceImpl implements PersonService {
     
     @Autowired
     private ComnarconPersonDAO comnarconPersonDAO;

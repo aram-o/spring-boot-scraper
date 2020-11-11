@@ -7,6 +7,7 @@ import org.springframework.batch.core.listener.JobExecutionListenerSupport;
 
 /**
  * The listener class which is executed when the job is completed.
+ * 
  * @author aram
  */
 @Slf4j
@@ -14,8 +15,8 @@ public class JobCompletionListener extends JobExecutionListenerSupport {
 
 	@Override
 	public void afterJob(JobExecution jobExecution) {
-		if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-			log.info("The job completed successfully.");
-		}
+            if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
+                log.info("The job completed successfully.");
+            }
 	}
 }
