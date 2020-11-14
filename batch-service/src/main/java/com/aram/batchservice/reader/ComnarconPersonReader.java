@@ -7,6 +7,7 @@ import com.aram.web.spider.WebSpiderImpl;
 import com.aram.web.spider.webclient.HtmlUnitWebClient;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
@@ -30,7 +31,8 @@ public class ComnarconPersonReader implements ItemReader<ComnarconPersonDTO> {
      * Get all links from http://comnarcon.com/?id=26 to read person data.
      * @throws Exception
      */
-    public ComnarconPersonReader() throws Exception {
+    @PostConstruct
+    public void init() throws Exception {
         ComnarconLinksSpiderLogic comnarconLinksSpiderLogic = new ComnarconLinksSpiderLogic();
 
         WebSpiderImpl webSpider = WebSpiderImpl
